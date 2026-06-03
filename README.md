@@ -1,16 +1,32 @@
-## Hi there 👋
+# Hi, I'm Pragati Pawara 👋
 
-<!--
-**pragatipawara/pragatipawara** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
+## Founder of Pysmirror
 
-Here are some ideas to get you started:
+Building technology that combines Psychology and AI to help people understand themselves better and grow.
 
-- 🔭 I’m currently working on ...
-- 🌱 I’m currently learning ...
-- 👯 I’m looking to collaborate on ...
-- 🤔 I’m looking for help with ...
-- 💬 Ask me about ...
-- 📫 How to reach me: ...
-- 😄 Pronouns: ...
-- ⚡ Fun fact: ...
--->
+### About Me
+
+- 🎓 Computer Engineering Student
+- 🚀 Founder of Pysmirror
+- 🧠 Interested in Psychology, AI and Human Behavior
+- 💡 Building products that create real impact
+
+### Current Focus
+
+- Web Development
+- Artificial Intelligence
+- Startup Building
+- Product Design
+
+### Future Projects
+
+- Pysmirror Platform
+- AI Mood Analyzer
+- Personality Assessment System
+- Mental Wellness Dashboard
+
+### Mission
+
+To build one of the world's most impactful psychology-powered technology companies.
+
+⭐ Always learning. Always building.
