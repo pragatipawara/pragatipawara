@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Pragati Pawara — Product & Data Portfolio</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=DM+Serif+Display:ital@0;1&display=swap');
+*{margin:0;padding:0;box-sizing:border-box;}
+:root{--dark:#06060f;--light:#f4f4f0;--white:#ffffff;--accent:#6c47ff;--accent2:#ff6b35;--border:#e2e2ea;--ink:#111118;--ink2:#555566;--ink3:#9999aa;}
+html{scroll-behavior:smooth;}
+body{font-family:'Inter',sans-serif;overflow-x:hidden;background:var(--dark);}
+
+/* CANVAS */
+#bg{position:fixed;top:0;left:0;z-index:0;pointer-events:none;}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:200;padding:18px 56px;display:flex;justify-content:space-between;align-items:center;transition:.4s;}
+nav.scrolled{background:rgba(6,6,15,.9);backdrop-filter:blur(20px);border-bottom:1px solid rgba(255,255,255,.05);}
+.nav-logo{font-size:.82rem;font-weight:800;letter-spacing:.15em;text-transform:uppercase;color:#fff;}
+.nav-links{display:flex;gap:32px;align-items:center;}
+.nav-links a{color:rgba(255,255,255,.5);font-size:.75rem;letter-spacing:.15em;text-transform:uppercase;text-decoration:none;transition:.2s;}
+.nav-links a:hover{color:#fff;}
+.nav-cta{padding:8px 20px;border-radius:50px;background:var(--accent);color:#fff !important;font-weight:600 !important;opacity:1 !important;}
+.nav-cta:hover{background:#5535ee !important;}
+
+/* HERO */
+#hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:100px 40px 80px;position:relative;z-index:1;}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:8px;padding:8px 20px;border-radius:50px;border:1px solid rgba(108,71,255,.3);background:rgba(108,71,255,.08);font-size:.7rem;letter-spacing:.3em;text-transform:uppercase;color:#a78bfa;margin-bottom:32px;}
+.hero-dot{width:6px;height:6px;border-radius:50%;background:#a78bfa;animation:blink 2s infinite;}
+@keyframes blink{0%,100%{opacity:1;}50%{opacity:.2;}}
+.hero-name{font-family:'DM Serif Display',serif;font-size:clamp(3.5rem,9vw,8rem);line-height:.95;letter-spacing:-.03em;color:#fff;margin-bottom:16px;}
+.hero-name em{font-style:italic;background:linear-gradient(135deg,#a78bfa,#60a5fa);-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+.hero-tagline{font-size:clamp(1rem,2vw,1.3rem);color:rgba(255,255,255,.4);max-width:600px;line-height:1.7;margin-bottom:48px;font-weight:300;}
+.hero-tagline strong{color:rgba(255,255,255,.8);font-weight:600;}
+.hero-btns{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;margin-bottom:64px;}
+.btn-primary{padding:14px 36px;border-radius:50px;background:linear-gradient(135deg,#6c47ff,#a855f7);color:#fff;font-size:.82rem;letter-spacing:.15em;text-transform:uppercase;font-weight:600;text-decoration:none;transition:.3s;box-shadow:0 0 40px rgba(108,71,255,.4);}
+.btn-primary:hover{transform:scale(1.04);box-shadow:0 0 60px rgba(108,71,255,.6);}
+.btn-ghost{padding:14px 36px;border-radius:50px;border:1px solid rgba(255,255,255,.15);color:#fff;font-size:.82rem;letter-spacing:.15em;text-transform:uppercase;text-decoration:none;transition:.3s;}
+.btn-ghost:hover{border-color:rgba(255,255,255,.4);background:rgba(255,255,255,.05);}
+.hero-stats{display:flex;gap:48px;justify-content:center;flex-wrap:wrap;}
+.hero-stat{text-align:center;}
+.hero-stat-num{font-family:'DM Serif Display',serif;font-size:2.2rem;color:#fff;line-height:1;}
+.hero-stat-label{font-size:.65rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.3);margin-top:4px;}
+.scroll-hint{position:absolute;bottom:32px;display:flex;flex-direction:column;align-items:center;gap:6px;color:rgba(255,255,255,.2);font-size:.62rem;letter-spacing:.3em;text-transform:uppercase;}
+.scroll-line{width:1px;height:36px;background:linear-gradient(to bottom,transparent,rgba(255,255,255,.3));animation:sh 1.8s ease-in-out infinite;}
+@keyframes sh{0%,100%{opacity:.2;}50%{opacity:1;}}
+
+/* ABOUT — LIGHT */
+#about{background:var(--light);padding:100px 56px;position:relative;z-index:2;border-radius:40px 40px 0 0;margin-top:-40px;}
+.about-inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;}
+.about-label{font-size:.65rem;letter-spacing:.4em;text-transform:uppercase;color:var(--accent);font-weight:600;margin-bottom:16px;}
+.about-title{font-family:'DM Serif Display',serif;font-size:clamp(2rem,4vw,3.2rem);color:var(--ink);line-height:1.1;margin-bottom:24px;}
+.about-title em{font-style:italic;color:var(--accent);}
+.about-text{font-size:1rem;color:var(--ink2);line-height:1.8;margin-bottom:32px;}
+.about-pills{display:flex;flex-wrap:wrap;gap:10px;}
+.pill{padding:8px 18px;border-radius:50px;border:1px solid var(--border);font-size:.78rem;color:var(--ink2);font-weight:500;background:var(--white);}
+.about-cards{display:flex;flex-direction:column;gap:16px;}
+.about-card{background:var(--white);border:1px solid var(--border);border-radius:20px;padding:24px;display:flex;gap:16px;align-items:flex-start;transition:.3s;}
+.about-card:hover{border-color:rgba(108,71,255,.2);transform:translateX(4px);}
+.about-card-icon{width:44px;height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.3rem;flex-shrink:0;}
+.about-card-title{font-weight:700;font-size:.9rem;color:var(--ink);margin-bottom:4px;}
+.about-card-text{font-size:.8rem;color:var(--ink2);line-height:1.6;}
+
+/* PROJECTS — DARK */
+#projects{background:var(--dark);padding:100px 56px;position:relative;z-index:2;}
+.projects-inner{max-width:1100px;margin:0 auto;}
+.section-eyebrow{font-size:.65rem;letter-spacing:.4em;text-transform:uppercase;color:#a78bfa;font-weight:600;margin-bottom:12px;}
+.section-title{font-family:'DM Serif Display',serif;font-size:clamp(2rem,4vw,3.2rem);color:#fff;margin-bottom:48px;line-height:1.1;}
+.projects-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;}
+.proj-card{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);border-radius:24px;padding:32px;transition:.4s;text-decoration:none;display:block;position:relative;overflow:hidden;}
+.proj-card::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(108,71,255,.05),transparent);opacity:0;transition:.4s;border-radius:24px;}
+.proj-card:hover{border-color:rgba(108,71,255,.3);transform:translateY(-6px);}
+.proj-card:hover::before{opacity:1;}
+.proj-card.featured{grid-column:1/-1;}
+.proj-tag{display:inline-flex;align-items:center;gap:6px;padding:4px 12px;border-radius:50px;font-size:.65rem;letter-spacing:.15em;text-transform:uppercase;font-weight:600;margin-bottom:16px;}
+.tag-product{background:rgba(255,107,53,.1);color:#ff6b35;border:1px solid rgba(255,107,53,.2);}
+.tag-data{background:rgba(108,71,255,.1);color:#a78bfa;border:1px solid rgba(108,71,255,.2);}
+.tag-dev{background:rgba(16,185,129,.1);color:#34d399;border:1px solid rgba(16,185,129,.2);}
+.proj-title{font-family:'DM Serif Display',serif;font-size:clamp(1.3rem,2.5vw,1.8rem);color:#fff;margin-bottom:10px;line-height:1.2;}
+.proj-desc{font-size:.83rem;color:rgba(255,255,255,.4);line-height:1.7;margin-bottom:20px;}
+.proj-tech{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:24px;}
+.tech{padding:4px 10px;border-radius:6px;background:rgba(255,255,255,.05);font-size:.7rem;color:rgba(255,255,255,.4);font-family:'JetBrains Mono',monospace;}
+.proj-link{display:inline-flex;align-items:center;gap:6px;font-size:.75rem;color:#a78bfa;letter-spacing:.1em;text-transform:uppercase;font-weight:600;}
+.proj-arrow{transition:.3s;}
+.proj-card:hover .proj-arrow{transform:translateX(4px);}
+.proj-num{font-family:'DM Serif Display',serif;font-size:4rem;color:rgba(255,255,255,.04);position:absolute;top:16px;right:24px;line-height:1;}
+
+/* SKILLS — LIGHT */
+#skills{background:var(--light);padding:100px 56px;position:relative;z-index:2;}
+.skills-inner{max-width:1100px;margin:0 auto;}
+.skills-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:0;}
+.skill-card{background:var(--white);border:1px solid var(--border);border-radius:20px;padding:28px;transition:.3s;}
+.skill-card:hover{border-color:rgba(108,71,255,.2);transform:translateY(-4px);}
+.skill-icon{font-size:1.8rem;margin-bottom:14px;}
+.skill-title{font-weight:800;font-size:1rem;color:var(--ink);margin-bottom:12px;}
+.skill-list{display:flex;flex-direction:column;gap:8px;}
+.skill-item{display:flex;justify-content:space-between;align-items:center;}
+.skill-name{font-size:.8rem;color:var(--ink2);}
+.skill-bar{width:100px;height:4px;background:var(--border);border-radius:2px;overflow:hidden;}
+.skill-fill{height:100%;border-radius:2px;background:linear-gradient(90deg,#6c47ff,#a855f7);}
+
+/* CONTACT — DARK */
+#contact{background:var(--dark);padding:100px 56px;position:relative;z-index:2;text-align:center;}
+.contact-inner{max-width:700px;margin:0 auto;}
+.contact-title{font-family:'DM Serif Display',serif;font-size:clamp(2.5rem,5vw,4.5rem);color:#fff;line-height:1.05;margin-bottom:20px;}
+.contact-title em{font-style:italic;background:linear-gradient(135deg,#a78bfa,#60a5fa);-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+.contact-sub{font-size:1rem;color:rgba(255,255,255,.4);margin-bottom:40px;line-height:1.7;}
+.contact-links{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;}
+.contact-link{padding:14px 28px;border-radius:50px;text-decoration:none;font-size:.78rem;letter-spacing:.15em;text-transform:uppercase;font-weight:600;transition:.3s;display:flex;align-items:center;gap:8px;}
+.cl-email{background:linear-gradient(135deg,#6c47ff,#a855f7);color:#fff;box-shadow:0 0 30px rgba(108,71,255,.4);}
+.cl-email:hover{transform:scale(1.04);}
+.cl-github{border:1px solid rgba(255,255,255,.15);color:#fff;}
+.cl-github:hover{border-color:rgba(255,255,255,.4);}
+.cl-linkedin{border:1px solid rgba(255,255,255,.15);color:#fff;}
+.cl-linkedin:hover{border-color:rgba(255,255,255,.4);}
+
+/* FOOTER */
+footer{background:#030308;padding:24px 56px;display:flex;justify-content:space-between;align-items:center;border-top:1px solid rgba(255,255,255,.04);position:relative;z-index:2;}
+.footer-copy{font-size:.72rem;color:rgba(255,255,255,.2);}
+.footer-back{font-size:.72rem;color:rgba(255,255,255,.2);text-decoration:none;transition:.2s;}
+.footer-back:hover{color:#fff;}
+
+@media(max-width:768px){
+  nav{padding:14px 20px;}.nav-links{display:none;}
+  #hero{padding:80px 20px 60px;}
+  #about,#projects,#skills,#contact{padding:60px 20px;}
+  .about-inner{grid-template-columns:1fr;gap:40px;}
+  .projects-grid{grid-template-columns:1fr;}
+  .proj-card.featured{grid-column:1;}
+  .skills-grid{grid-template-columns:1fr;}
+  footer{padding:20px;}
+}
+</style>
+</head>
+<body>
+
+<canvas id="bg"></canvas>
+
+<nav id="nav">
+  <div class="nav-logo">Pragati Pawara</div>
+  <div class="nav-links">
+    <a href="#about">About</a>
+    <a href="#projects">Projects</a>
+    <a href="#skills">Skills</a>
+    <a href="mailto:pawarapragati1113@gmail.com" class="nav-cta">Hire Me</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-eyebrow"><div class="hero-dot"></div>Open to Product & Data Roles</div>
+  <h1 class="hero-name">Pragati<br><em>Pawara</em></h1>
+  <p class="hero-tagline">A fresher who <strong>thinks like a Product Manager</strong>, works like a <strong>Data Analyst</strong>, and builds like a <strong>Developer</strong>.</p>
+  <div class="hero-btns">
+    <a href="#projects" class="btn-primary">View My Work</a>
+    <a href="mailto:pawarapragati1113@gmail.com" class="btn-ghost">Get In Touch</a>
+  </div>
+  <div class="hero-stats">
+    <div class="hero-stat"><div class="hero-stat-num">5</div><div class="hero-stat-label">Projects Built</div></div>
+    <div class="hero-stat"><div class="hero-stat-num">3</div><div class="hero-stat-label">Domains</div></div>
+    <div class="hero-stat"><div class="hero-stat-num">10+</div><div class="hero-stat-label">Tools Used</div></div>
+    <div class="hero-stat"><div class="hero-stat-num">100%</div><div class="hero-stat-label">Self Built</div></div>
+  </div>
+  <div class="scroll-hint"><div class="scroll-line"></div><span>Scroll</span></div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-inner">
+    <div>
+      <div class="about-label">About Me</div>
+      <h2 class="about-title">IT Engineering Student.<br><em>Product thinker.</em><br>Data builder.</h2>
+      <p class="about-text">I'm Pragati Pawara, an IT Engineering student from Pune passionate about the intersection of product thinking, data analysis, and human-centered technology. I build projects that prove I can think, analyze, and ship — not just talk about it.</p>
+      <div class="about-pills">
+        <span class="pill">Product Management</span>
+        <span class="pill">Data Analytics</span>
+        <span class="pill">SQL</span>
+        <span class="pill">Python</span>
+        <span class="pill">Web Development</span>
+        <span class="pill">UX Thinking</span>
+      </div>
+    </div>
+    <div class="about-cards">
+      <div class="about-card">
+        <div class="about-card-icon" style="background:#f0f0ff;">🧠</div>
+        <div><div class="about-card-title">Product Thinking</div><div class="about-card-text">I tear down apps, write PRDs, define metrics, and think in user journeys — not just features.</div></div>
+      </div>
+      <div class="about-card">
+        <div class="about-card-icon" style="background:#f0fff4;">📊</div>
+        <div><div class="about-card-title">Data Analysis</div><div class="about-card-text">Python, Pandas, SQL, and Looker Studio — I turn raw data into decisions and visual stories.</div></div>
+      </div>
+      <div class="about-card">
+        <div class="about-card-icon" style="background:#fff7f0;">⚡</div>
+        <div><div class="about-card-title">Building & Shipping</div><div class="about-card-text">Every project in this portfolio is live — deployed, documented, and publicly accessible.</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="projects-inner">
+    <div class="section-eyebrow">Portfolio</div>
+    <div class="section-title">Things I've Built</div>
+    <div class="projects-grid">
+
+      <a href="https://pragatipawara.github.io/upi-data-analysis" target="_blank" class="proj-card featured">
+        <div class="proj-num">01</div>
+        <div class="proj-tag tag-data">📊 Data Analytics</div>
+        <div class="proj-title">UPI Payments Data Analysis</div>
+        <div class="proj-desc">Analyzed 5,000 UPI transactions across PhonePe, GPay, Paytm and 3 more platforms. Uncovered peak hours, city trends, and market share insights using Python and Pandas.</div>
+        <div class="proj-tech"><span class="tech">Python</span><span class="tech">Pandas</span><span class="tech">Matplotlib</span><span class="tech">Seaborn</span><span class="tech">Google Colab</span></div>
+        <div class="proj-link">View Live Project <span class="proj-arrow">→</span></div>
+      </a>
+
+      <a href="https://pragatipawara.github.io/sql-ecommerce-analysis" target="_blank" class="proj-card">
+        <div class="proj-num">02</div>
+        <div class="proj-tag tag-data">🛒 SQL</div>
+        <div class="proj-title">E-Commerce SQL Case Study</div>
+        <div class="proj-desc">10 SQL queries answering real business questions. From basic JOINs to CTEs and Window Functions — ₹10.3L revenue analyzed across 4 relational tables.</div>
+        <div class="proj-tech"><span class="tech">SQL</span><span class="tech">SQLite</span><span class="tech">CTEs</span><span class="tech">Window Functions</span></div>
+        <div class="proj-link">View Live Project <span class="proj-arrow">→</span></div>
+      </a>
+
+      <a href="https://datastudio.google.com/reporting/d8fecebc-a297-40b8-9544-f1ad68f7c75b" target="_blank" class="proj-card">
+        <div class="proj-num">03</div>
+        <div class="proj-tag tag-data">📈 Dashboard</div>
+        <div class="proj-title">Retail & FMCG Sales Dashboard</div>
+        <div class="proj-desc">Interactive dashboard analyzing retail sales across 5 regions, 10 cities and 15 brands. Built with Google Sheets and Looker Studio.</div>
+        <div class="proj-tech"><span class="tech">Looker Studio</span><span class="tech">Google Sheets</span><span class="tech">FMCG</span></div>
+        <div class="proj-link">View Dashboard <span class="proj-arrow">→</span></div>
+      </a>
+
+      <a href="https://pragatipawara.github.io/neuroverse" target="_blank" class="proj-card">
+        <div class="proj-num">04</div>
+        <div class="proj-tag tag-dev">🧠 Web Dev</div>
+        <div class="proj-title">Neuroverse — Inside The Human Mind</div>
+        <div class="proj-desc">Award-worthy cinematic neuroscience experience. Scroll-driven storytelling with 3D canvas animations, particle systems, and interactive brain visualization.</div>
+        <div class="proj-tech"><span class="tech">HTML</span><span class="tech">CSS</span><span class="tech">JavaScript</span><span class="tech">Canvas API</span></div>
+        <div class="proj-link">View Live Site <span class="proj-arrow">→</span></div>
+      </a>
+
+      <a href="https://notion.so" target="_blank" class="proj-card featured">
+        <div class="proj-num">05</div>
+        <div class="proj-tag tag-product">📱 Product</div>
+        <div class="proj-title">PhonePe Product Teardown</div>
+        <div class="proj-desc">Deep product analysis of India's largest UPI platform. User segmentation, feature audit, metric framework, 4 product recommendations, and competitive snapshot vs GPay and Paytm.</div>
+        <div class="proj-tech"><span class="tech">Product Thinking</span><span class="tech">UX Analysis</span><span class="tech">Metrics</span><span class="tech">Notion</span></div>
+        <div class="proj-link">Read Case Study <span class="proj-arrow">→</span></div>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="skills-inner">
+    <div class="about-label">Skills</div>
+    <h2 class="section-title" style="color:var(--ink);margin-bottom:40px;">What I Work With</h2>
+    <div class="skills-grid">
+      <div class="skill-card">
+        <div class="skill-icon">📊</div>
+        <div class="skill-title">Data Analytics</div>
+        <div class="skill-list">
+          <div class="skill-item"><span class="skill-name">Python & Pandas</span><div class="skill-bar"><div class="skill-fill" style="width:80%"></div></div></div>
+          <div class="skill-item"><span class="skill-name">SQL</span><div class="skill-bar"><div class="skill-fill" style="width:75%"></div></div></div>
+          <div class="skill-item"><span class="skill-name">Looker Studio</span><div class="skill-bar"><div class="skill-fill" style="width:70%"></div></div></div>
+          <div class="skill-item"><span class="skill-name">Matplotlib / Seaborn</span><div class="skill-bar"><div class="skill-fill" style="width:75%"></div></div></div>
+        </div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-icon">🧠</div>
+        <div class="skill-title">Product Management</div>
+        <div class="skill-list">
+          <div class="skill-item"><span class="skill-name">Product Teardowns</span><div class="skill-bar"><div class="skill-fill" style="width:85%"></div></div></div>
+          <div class="skill-item"><span class="skill-name">PRD Writing</span><div class="skill-bar"><div class="skill-fill" style="width:75%"></div></div></div>
+          <div class="skill-item"><span class="skill-name">Metric Definition</span><div class="skill-bar"><div class="skill-fill" style="width:80%"></div></div></div>
+          <div class="skill-item"><span class="skill-name">User Research</span><div class="skill-bar"><div class="skill-fill" style="width:70%"></div></div></div>
+        </div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-icon">⚡</div>
+        <div class="skill-title">Development</div>
+        <div class="skill-list">
+          <div class="skill-item"><span class="skill-name">HTML / CSS</span><div class="skill-bar"><div class="skill-fill" style="width:85%"></div></div></div>
+          <div class="skill-item"><span class="skill-name">JavaScript</span><div class="skill-bar"><div class="skill-fill" style="width:75%"></div></div></div>
+          <div class="skill-item"><span class="skill-name">GitHub</span><div class="skill-bar"><div class="skill-fill" style="width:80%"></div></div></div>
+          <div class="skill-item"><span class="skill-name">Notion</span><div class="skill-bar"><div class="skill-fill" style="width:90%"></div></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="contact-inner">
+    <div class="section-eyebrow">Contact</div>
+    <h2 class="contact-title">Let's Build<br><em>Something Together</em></h2>
+    <p class="contact-sub">I'm actively looking for Product Analyst, Data Analyst, and Product Manager roles. Open to internships, full-time, and freelance opportunities.</p>
+    <div class="contact-links">
+      <a href="mailto:pawarapragati1113@gmail.com" class="contact-link cl-email">✉️ Email Me</a>
+      <a href="https://github.com/pragatipawara" target="_blank" class="contact-link cl-github">⚡ GitHub</a>
+      <a href="https://linkedin.com/in/pragati-pawara-1b2443290" target="_blank" class="contact-link cl-linkedin">💼 LinkedIn</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <span class="footer-copy">© 2026 Pragati Pawara. All projects self-built.</span>
+  <a href="#hero" class="footer-back">Back to top ↑</a>
+</footer>
+
+<script>
+// NAV SCROLL
+window.addEventListener('scroll',()=>{
+  document.getElementById('nav').classList.toggle('scrolled',window.scrollY>50);
+});
+
+// BG CANVAS
+const c=document.getElementById('bg');
+const x=c.getContext('2d');
+c.width=window.innerWidth;c.height=window.innerHeight;
+window.addEventListener('resize',()=>{c.width=window.innerWidth;c.height=window.innerHeight;});
+
+const pts=[];
+for(let i=0;i<100;i++)pts.push({
+  x:Math.random()*window.innerWidth,y:Math.random()*window.innerHeight,
+  vx:(Math.random()-.5)*.25,vy:(Math.random()-.5)*.25,
+  r:Math.random()*1.2+.3,
+  color:Math.random()>.5?'108,71,255':'168,85,247'
+});
+
+function draw(){
+  x.clearRect(0,0,c.width,c.height);
+  pts.forEach(p=>{
+    p.x+=p.vx;p.y+=p.vy;
+    if(p.x<0||p.x>c.width)p.vx*=-1;
+    if(p.y<0||p.y>c.height)p.vy*=-1;
+    x.beginPath();x.arc(p.x,p.y,p.r,0,Math.PI*2);
+    x.fillStyle=`rgba(${p.color},.4)`;x.fill();
+  });
+  for(let i=0;i<pts.length;i++)for(let j=i+1;j<pts.length;j++){
+    const d=Math.hypot(pts[i].x-pts[j].x,pts[i].y-pts[j].y);
+    if(d<90){x.beginPath();x.moveTo(pts[i].x,pts[i].y);x.lineTo(pts[j].x,pts[j].y);
+    x.strokeStyle=`rgba(108,71,255,${(1-d/90)*.06})`;x.lineWidth=.5;x.stroke();}
+  }
+  requestAnimationFrame(draw);
+}
+draw();
+
+// SCROLL ANIMATIONS
+const obs=new IntersectionObserver(e=>{
+  e.forEach(en=>{if(en.isIntersecting){en.target.style.opacity='1';en.target.style.transform='translateY(0)';}});
+},{threshold:.1});
+document.querySelectorAll('.proj-card,.about-card,.skill-card').forEach(el=>{
+  el.style.opacity='0';el.style.transform='translateY(30px)';
+  el.style.transition='opacity .7s ease,transform .7s ease';
+  obs.observe(el);
+});
+</script>
+</body>
+</html>
