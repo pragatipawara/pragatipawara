@@ -6,7 +6,7 @@ Building technology that combines Psychology and AI to help people understand th
 
 ### About Me
 
-- 🎓 Computer Engineering Student
+- 🎓 Information Engineering Student
 - 🚀 Founder of Pysmirror
 - 🧠 Interested in Psychology, AI and Human Behavior
 - 💡 Building products that create real impact
